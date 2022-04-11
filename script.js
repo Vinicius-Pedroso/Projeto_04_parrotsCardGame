@@ -14,6 +14,8 @@ while (numerocartas >14 || numerocartas <4 || numerocartas%2 !=0) {
 /*Timer começando imediatamente depois do prompt*/
 timer();
 
+/*parte que gera array com números aleatórios. Sei que existe a função sort, mas quis praticar while
+lógica e outras coisas*/
 while (todascartas.length < numerocartas) {
     var novacarta = getRandomIntInclusive(1, numerocartas/2);
     var contador = 0
@@ -32,9 +34,14 @@ while (todascartas.length < numerocartas) {
     }
 }
 
+/*Imprime as cartas para o usuário começar a interagir*/
 imprimircartas();
 
-
+/*função para virar uma carta, caso o total de cartas viradas sejam 2, compara se as cartas são as mesmas
+caso não sejam, da 1 segundo de tempo antes de retornar as cartas virada para baixo
+caso sejam, mantem as 2 cartas viradas e atualiza as cartas já eliminadas. Se o total de cartas eliminadas
+se igualar o total de cartas, o jogo termina e oferece um novo jogo
+Conta o número de jogadas também*/
 function turncard(idcard) {
     todascartas[idcard].estado = 1;
     cartasviradas++;
@@ -55,11 +62,13 @@ function turncard(idcard) {
                 }
             }
         }
-
+        /*O intervalo de 1 segundo necessário para o caso de 2 jogadas erradas,
+        visualizar a segunda carta, mas as vezes é inconsistente*/
         setTimeout(function(){
             imprimircartas();
         }, 1000); 
         
+        /*final do jogo e proposta de um novo*/
         if (eliminatedcards == numerocartas){
             setTimeout(function(){
                 alert("Você venceu em " +jogadas +" jogadas e levou " +time +" segundos para completar o jogo. Parabens!");
@@ -76,12 +85,15 @@ function turncard(idcard) {
     }
 }
 
+/*gera os números aleatórios para o array de cartas*/
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+
+/*apaga a tela anterior e reimprime a tela com todos os valores atualizados*/
 function imprimircartas() {
 
     /*Limpa a tela */    
@@ -146,6 +158,7 @@ function imprimircartas() {
     }
 }
 
+/*Conta o tempo de jogo*/
 function timer(){
     setInterval(function(){
         if (eliminatedcards < numerocartas) {
@@ -157,6 +170,7 @@ function timer(){
     }, 1000);
 }
 
+/*recomeça o jogo caso o usuario deseje*/
 function jogo(){
     cartasviradas = 0;
     eliminatedcards = 0;
