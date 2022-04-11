@@ -24,3 +24,75 @@ while (todascartas.length < numerocartas) {
         todascartas.push(card);
     }
 }
+
+imprimircartas();
+
+function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function imprimircartas() {
+
+    /*Limpa a tela */    
+    const clear1 = document.querySelector(".linha1");
+    clear1.innerHTML = "";
+    const clear2 = document.querySelector(".linha2");
+    clear2.innerHTML = "";
+
+    /*Reimprime a tela com o jogo atualizado*/
+    for (var i = 0; i < numerocartas; i++) {
+        if (i < numerocartas/2) {
+
+            if (todascartas[i].estado == 0) {
+                clear1.innerHTML += `
+                <div class="card" onclick="turncard(${i})">
+                    <img src="image/front.png" class="back">
+                </div>
+                `
+            }
+
+            if (todascartas[i].estado == 1) {
+                clear1.innerHTML += `
+                <div class="card">
+                    <img src="image/parrot${todascartas[i].numero}.gif" class="front">
+                </div>
+                `
+            }
+
+            if (todascartas[i].estado == 2) {
+                clear1.innerHTML += `
+                <div class="card">
+                    <img src="image/parrot${todascartas[i].numero}.gif" class="front">
+                </div>
+                `
+            }
+
+        } else {
+            if (todascartas[i].estado == 0) {
+                clear2.innerHTML += `
+                <div class="card" onclick="turncard(${i})">
+                    <img src="image/front.png" class="back">
+                </div>
+                `
+            }
+
+            if (todascartas[i].estado == 1) {
+                clear2.innerHTML += `
+                <div class="card">
+                    <img src="image/parrot${todascartas[i].numero}.gif" class="front">
+                </div>
+                `
+            }
+
+            if (todascartas[i].estado == 2) {
+                clear2.innerHTML += `
+                <div class="card">
+                    <img src="image/parrot${todascartas[i].numero}.gif" class="front">
+                </div>
+                `
+            }
+        }
+    }
+}
