@@ -1,3 +1,6 @@
+let cartasviradas = 0;
+let eliminatedcards = 0;
+let jogadas = 0;
 
 let numerocartas = Number(prompt("Com quantas cartas deseja jogar?"));
 while (numerocartas >14 || numerocartas <4 || numerocartas%2 !=0) {
@@ -26,6 +29,31 @@ while (todascartas.length < numerocartas) {
 }
 
 imprimircartas();
+
+function turncard(idcard) {
+    todascartas[idcard].estado = 1;
+    cartasviradas++;
+    jogadas++;
+
+    if (cartasviradas =2) {
+        for (var j = 0; j < numerocartas; j++){
+            if (todascartas[j].estado == 1 && j != idcard) {
+                if (todascartas[j].numero == todascartas[idcard].numero){
+                    todascartas[j].estado = 2;
+                    todascartas[idcard].estado = 2;
+                    eliminatedcards = eliminatedcards+2;
+                } else {
+                    todascartas[j].estado = 0;
+                    todascartas[idcard].estado = 0;
+                }
+            }
+        }
+        imprimircartas();
+        if (eliminatedcards == numerocartas){
+            alert("você venceu");
+        }
+    }
+}
 
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
