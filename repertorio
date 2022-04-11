@@ -35,9 +35,16 @@ for (var i = 0; i < numerocartas; i++) {
 
 var array = [];
 
-var object = {name: "oi", number: 0};
+var object1 = {name: "oi", number: 0};
+var object2 = {name: "ola", number: 1};
+var object3 = {name: "hello", number: 2};
+var object4 = {name: "eae", number: 3};
+var object5 = {name: "opa", number: 4};
 
+var array = [];
 for (var i = 0; i < 6; i++) {
-    object.number = i;
+    var object = {name: "a", number: i}
     array.push(object)
 }
+
+Teste de commit

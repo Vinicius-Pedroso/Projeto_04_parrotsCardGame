@@ -1,7 +1,11 @@
 let cartasviradas = 0;
 let eliminatedcards = 0;
+let jogadas = 0;
 
-const numerocartas = Number(prompt("Com quantas cartas deseja jogar?"));
+let numerocartas = Number(prompt("Com quantas cartas deseja jogar?"));
+while (numerocartas >14 || numerocartas <4 || numerocartas%2 !=0) {
+    numerocartas = Number(prompt("Com quantas cartas deseja jogar? Por favor insira um número par entre 4 e 14!"))
+}
 
 let todascartas = [];
 let card = {numero: 0, estado: 0};
@@ -30,6 +34,7 @@ imprimircartas();
 function turncard(idcard) {
     todascartas[idcard].estado = 1;
     cartasviradas++;
+    jogadas++;
 
     if (cartasviradas =2) {
         for (var j = 0; j < numerocartas; j++){
@@ -49,7 +54,6 @@ function turncard(idcard) {
             alert("você venceu");
         }
     }
-    alert("Eu sou um alert!");
 }
 
 function getRandomIntInclusive(min, max) {
@@ -88,7 +92,8 @@ function imprimircartas() {
 
             if (todascartas[i].estado == 2) {
                 clear1.innerHTML += `
-                <div class="cardinvisivel">
+                <div class="card">
+                    <img src="image/parrot${todascartas[i].numero}.gif" class="front">
                 </div>
                 `
             }
@@ -112,7 +117,8 @@ function imprimircartas() {
 
             if (todascartas[i].estado == 2) {
                 clear2.innerHTML += `
-                <div class="cardinvisivel">
+                <div class="card">
+                    <img src="image/parrot${todascartas[i].numero}.gif" class="front">
                 </div>
                 `
             }
